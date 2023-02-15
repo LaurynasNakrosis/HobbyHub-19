@@ -30,7 +30,6 @@ const DUMMY_DATA = [
         age: 75,
     },
 ];
-
 const HomeScreen = () => {
     const navigation = useNavigation();
   return (
