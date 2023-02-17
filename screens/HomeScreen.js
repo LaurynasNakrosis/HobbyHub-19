@@ -4,29 +4,28 @@ import React from 'react'
 import { AntDesign, Ionicons, Entypo } from '@expo/vector-icons';
 import Swiper from 'react-native-deck-swiper';
 
-
 const DUMMY_DATA = [
     {
         id: 1,
         firstName: 'John',
         lastName: 'Douglas',
-        hobbyName: 'Simming',
-        photoURL: 'https://images.unsplash.com/photo-1504349127888-41',
+        hobbyName: 'Swimming',
+        photoURL: 'https://avatars.githubusercontent.com/u/24712956?v=4',
         age: 30,
     },
     {   
         id: 2,
         firstName: 'Jane',
         lastName: 'Smith',
-        hobbyName: 'Simming',
-        photoURL: 'https://images.unsplash.com/photo-1504349127888-41',
+        hobbyName: 'Swimming',
+        photoURL: 'https://avatars.githubusercontent.com/u/24712956?v=4',
         age: 25,
     },
     {   id: 3,
         firstName: 'Elon',
         lastName: 'Musk',
-        hobbyName: 'Simming',
-        photoURL: 'https://images.unsplash.com/photo-1504349127888-41',
+        hobbyName: 'Swimming',
+        photoURL: 'https://media.licdn.com/dms/image/C4D03AQEogDmoacJn4Q/profile-displayphoto-shrink_200_200/0/1639867842897?e=1681948800&v=beta&t=SX0E2UNvwp32eQhiskghNQaQ_HQd9-uKfQobsQ1wG6M',
         age: 75,
     },
 ];
@@ -38,7 +37,7 @@ const HomeScreen = () => {
         <View style={styles.row}>
             <TouchableOpacity >
                 <Image style={styles.margin}
-                    source={require("../assets/favicon.png")} />
+                    source={require("../assets/neon-chat.png")} />
             </TouchableOpacity>
             <TouchableOpacity >
                 <AntDesign style={styles.margin}
@@ -51,19 +50,39 @@ const HomeScreen = () => {
         </View>
         {/* End of Header */}
         {/*Cards*/}
-        <View style={styles.wrapper}>
-            <Swiper 
-                containerStyle={{backgroundColor: 'transparent'}}
-                cards={DUMMY_DATA} 
-                renderCard={(card) => (
-                   <View key={card.id} style={styles.container}>
-                        <Text>{card.firstName}</Text>
-                        <Text>{card.lastName}</Text>
-                    </View> 
-                )  
-        }
-            />
-        </View>
+            <View style={styles.wrapper}>
+                <Swiper 
+                    containerStyle={{backgroundColor: 'transparent'}}
+                    cards={DUMMY_DATA} 
+                    stackSize={1000}
+                    cardIndex={0}
+                    animateCardOpacity
+                    verticalSwipe={false} 
+                    renderCard={(card) => (
+                        <View 
+                            key={card.id} 
+                            style={styles.container}
+                        >
+                            <Image 
+                                source={{uri: card.photoURL}} 
+                                style={styles.image} 
+                            />
+                            <View style={styles.titleBox}>
+                                <View> 
+                                    <Text>
+                                        {card.firstName} {card.lastName}
+                                    </Text>
+                                    <Text>
+                                        {card.hobbyName}
+                                    </Text>
+                                </View>
+                                <Text>{card.age}</Text>
+
+                            </View>
+                        </View>                    
+                    )}
+                />
+            </View>
     </SafeAreaView>
   )
 }
@@ -83,6 +102,7 @@ const styles = StyleSheet.create({
         margin: 10,
         width: 45,
         height: 45,
+        color: 'white',
     },
     wrapper: {
         flex: 1, // flex-1
@@ -90,6 +110,41 @@ const styles = StyleSheet.create({
       },
     screen:{
         flex: 1,// flex-1
-    }
+    },
+    image: {
+        position: 'absolute', // absolute
+        top: 0, // top-0
+        width: '100%', // w-full
+        height: '100%', // h-full
+        borderRadius: 16, // rounded-xl
+        shadowColor: '#000', // shadow-xl
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        backgroundColor: '#FFF', // bg-white
+        zIndex: 10, // z-10
+      },
+    titleBox:{
+        position: 'absolute', // absolute
+        bottom: 0, // bottom-
+        backgroundColor: '#FFF', // bg-white
+        width: '100%', // w-full
+        textAlign: 'center', // text-center
+        fontWeight: 'bold', // text-bold
+        color: '#000', // text-black
+        height: '15%', // h-100
+        justifyContent: 'space-between', //
+        alignItems: 'between', // space-between
+        flexDirection: 'row', // row
+        padding: 10, // padding-10
+        borderBottomRightRadius: 16, // rounded-xl
+        borderBottomLeftRadius: 16, // rounded-xl
+        shadowColor: '#000', // shadow-xl
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        zIndex: 10, // z-10
+    }       
+    
   });
 export default HomeScreen
