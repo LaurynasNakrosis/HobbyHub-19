@@ -54,10 +54,29 @@ const HomeScreen = () => {
                 <Swiper 
                     containerStyle={{backgroundColor: 'transparent'}}
                     cards={DUMMY_DATA} 
-                    stackSize={1000}
+                    stackSize={5}
                     cardIndex={0}
                     animateCardOpacity
-                    verticalSwipe={false} 
+                    verticalSwipe={false}
+                    overlayLabels={{
+                        left: {
+                            title: "NOPE",
+                            style: {
+                                label:{
+                                    textAlign: "right",
+                                    color: "red",
+                                }
+                            }
+                        },
+                        right: {
+                            title: "MATCH",
+                            style: {
+                                label:{
+                                    color: "green",
+                                }     
+                            }
+                        }
+                    }} 
                     renderCard={(card) => (
                         <View 
                             key={card.id} 
@@ -69,14 +88,14 @@ const HomeScreen = () => {
                             />
                             <View style={styles.titleBox}>
                                 <View> 
-                                    <Text>
+                                    <Text style={styles.text}>
                                         {card.firstName} {card.lastName}
                                     </Text>
                                     <Text>
                                         {card.hobbyName}
                                     </Text>
                                 </View>
-                                <Text>{card.age}</Text>
+                                <Text style={styles.text}>{card.age}</Text>
 
                             </View>
                         </View>                    
@@ -123,6 +142,11 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
         backgroundColor: '#FFF', // bg-white
         zIndex: 10, // z-10
+        shadowColor: '#000', // shadow-
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
       },
     titleBox:{
         position: 'absolute', // absolute
@@ -144,7 +168,12 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 4,
         zIndex: 10, // z-10
-    }       
+    },       
+    text: {
+        fontWeight: 'bold', // text-bold
+        color: '#000', // text-black
+        fontSize: 20, // text-20
+    },
     
     
   });
